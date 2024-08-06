@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { firestore } from '@/firebase';
@@ -24,7 +24,7 @@ export default function Home() {
     });
     setInventory(inventoryList);
     console.log(inventoryList);
-  }
+  };
 
   const addItem = async (item) => {
     const docRef = doc(collection(firestore, 'inventory'), item);
@@ -37,7 +37,7 @@ export default function Home() {
       await setDoc(docRef, { quantity: 1 });
     }
     await updateInventory();
-  }
+  };
 
   const removeItem = async (item) => {
     const docRef = doc(collection(firestore, 'inventory'), item);
@@ -52,7 +52,7 @@ export default function Home() {
       }
       await updateInventory();
     }
-  }
+  };
 
   const handlePhotoInput = (event) => {
     const file = event.target.files[0];
@@ -107,22 +107,22 @@ export default function Home() {
         >
           <Typography variant="h6">Add Item</Typography>
           <Stack width="100%" direction="row" spacing={2} >
-          <TextField
-            variant="outlined"
-            fullWidth
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
-          />
-          <Button
-            variant="outlined"
-            onClick={() => {
-              addItem(itemName);
-              setItemName("");
-              handleClose();
-            }}
-          >
-            Add
-          </Button>
+            <TextField
+              variant="outlined"
+              fullWidth
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
+            />
+            <Button
+              variant="outlined"
+              onClick={() => {
+                addItem(itemName);
+                setItemName("");
+                handleClose();
+              }}
+            >
+              Add
+            </Button>
           </Stack>
         </Box>
       </Modal>
